@@ -1,0 +1,87 @@
+.body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Cambria, Cochin, Georgia, Times, serif;
+    color: black;
+}
+.background {
+    background-color: #f3efef;
+    height: 100vh;
+}
+.header{
+    margin: 0, auto;
+    background-color: black;
+    height: 100px;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.headerContent{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.title{
+    color: white;
+    padding-top: 30px;
+}
+.menu{
+    display: flex;
+    padding: 15px;
+    justify-content: flex-end;
+}
+.menuLi{
+    margin-top: 20px;
+    font-size: larger;
+    display: inline-block;
+    padding: 5px;
+}
+.tankImg1{
+    height: auto;
+    width: 120px;
+    display: block;
+}
+.img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 5px;
+}
+.main{
+    font-size: larger;
+    text-align: center;
+    margin-top: 0px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.introIMG{
+    padding-bottom: 50px;
+}
+
+.footer{
+    margin: 0, auto;
+    background-color: black;
+    height: fit-content;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.footerContent{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.tankImg2{
+    height: auto;
+    width: 100px;
+    display: block;
+}
+.disclaimer{
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px;
+    color: white;
+    font-size: large;
+}
+

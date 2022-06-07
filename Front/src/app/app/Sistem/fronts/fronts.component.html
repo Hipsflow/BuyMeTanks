@@ -1,0 +1,135 @@
+<body>
+    <header>
+        <div class="header">
+            <div class="headerContent">
+                <a href="#" [routerLink]="['/frontpage']"><img class="tankImg1" src="assets/images/tankcartoon.png"></a>
+                <h1 class="title">BuyMeTanks.com</h1>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="menuLi"><a href="#" [routerLink]="['/api']">Sistema</a></li>
+                    <li class="menuLi"><a href="#">FAQ</a></li>
+                    <li class="menuLi"><a href="#">Contatos</a></li>
+                    <li class="menuLi"><a href="#">NaoseiMais</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="material-datatables">
+                <table id="datatables" class="table table-no-bordered" cellspacing="0" width="100%" style="width:100%">
+                    <thead class=" text-primary">
+                        <th>Nome do front</th>
+                        <th>Ano que Começou</th>
+                        <th>Ano que Terminou</th>
+                        <th class="disabled-sorting text-right">Ações</th>
+                    </thead>
+                    <tbody class="table table-success table-striped" *ngFor="let resposta of respostas">
+                        <tr (click)="getFront(resposta.id)">
+                            <td>{{resposta.name}}</td>
+                            <td>{{resposta.year_begin}}</td>
+                            <td>{{resposta.year_end}}</td>
+                            <td><button (click)="alertDelete(resposta.id)">
+                                Deletar
+                              </button></td>
+                            <td><button [routerLink]="['/update']">Update</button></td>
+                        </tr>
+                    </tbody>
+                    <td>
+                </table>
+                <form (submit)="insertFronts()">
+                    <div class="row g-3">
+                        <div class="col">
+                            <label>Nome do front:</label><br>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Eastern-Front"
+                                aria-label="Eastern-Front" [(ngModel)]="fronts.name">
+                            <br>
+                        </div>
+                        <div class="col">
+                            <label>Ano de inicio:</label><br>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="1939"
+                                aria-label="1939" [(ngModel)]="fronts.year_begin">
+                            <br>
+                        </div>
+                        <div class="col">
+                            <label>Ano do final:</label><br>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="1945"
+                                aria-label="1945" [(ngModel)]="fronts.year_end">
+                            <br>
+                        </div>
+                    </div>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Enviar">
+                </form>
+                <table id="juliano" class="table table-no-bordered" cellspacing="0" width="100%" style="width:100%">
+                    <thead class=" text-primary">
+                        <th>Front</th>
+                        <th>Tanque usados</th>
+                        <th class="disabled-sorting text-right">Ações</th>
+                    </thead>
+                    <tbody class="table table-success table-striped" *ngFor="let resultados of fronttanks">
+                        <tr>
+                            <td>{{resultados.frontname}}</td>
+                            <td>{{resultados.name}}</td>
+                            <td><button (click)="deleteFrontsTanks(respostas.id)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                    <td>
+                </table>
+                <form (submit)="insertFrontsTanks()">
+                    <label>Adicionar tanks ao front:</label><br>
+                    <select class="form-select" data-style="btn-primary"[(ngModel)]="frontTanks.front_id" name="carlos">
+                        <ng-container *ngFor="let fronts of respostas">
+                            <option [value]="fronts.id">
+                                {{fronts.name}}</option>
+                        </ng-container>
+                    </select>
+                    <select class="form-select" data-style="btn-primary"[(ngModel)]="frontTanks.tank_id" name="roberto">
+                        <ng-container *ngFor="let tanks of resultados">
+                            <option [value]="tanks.id">
+                                {{tanks.name}}</option>
+                        </ng-container>
+                    </select>
+                    <br>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Enviar">
+                </form>
+                <table id="hedenidson" class="table table-no-bordered" cellspacing="0" width="100%" style="width:100%">
+                    <thead class=" text-primary">
+                        <th>Front</th>
+                        <th>Beligentes</th>
+                        <th class="disabled-sorting text-right">Ações</th>
+                    </thead>
+                    <tbody class="table table-success table-striped" *ngFor="let resultados of frontcountries">
+                        <tr>
+                            <td>{{resultados.frontname}}</td>
+                            <td>{{resultados.name}}</td>
+                            <td><button (click)="deleteFrontsTanks(respostas.id)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                    <td>
+                </table>
+                <form (submit)="insertFrontsCountries()">
+                    <label>Adicionar Paises ao front:</label><br>
+                    <select class="form-select" data-style="btn-primary" [(ngModel)]="frontCountries.front_id" name="juan">
+                        <ng-container *ngFor="let fronts of respostas">
+                            <option [value]="fronts.id">
+                                {{fronts.name}}</option>
+                        </ng-container>
+                    </select>
+                    <select class="form-select" data-style="btn-primary" [(ngModel)]="frontCountries.country_id" name="yata">
+                        <ng-container *ngFor="let countries of paises">
+                            <option [value]="countries.id">
+                                {{countries.name}}</option>
+                        </ng-container>
+                    </select>
+                    <br>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </header>
+</body>
+<!-- <select [(ngModel)]="fronts.id_country" name="select">
+    <ng-container *ngFor="let country of paises">
+        <option [value]="country.id">
+            {{country.name}}</option>
+    </ng-container>
+</select> -->

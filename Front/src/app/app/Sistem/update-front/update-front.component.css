@@ -1,0 +1,43 @@
+.body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Cambria, Cochin, Georgia, Times, serif;
+    color: black;
+}
+.background {
+    background-color: #f3efef;
+    height: 100vh;
+}
+.header{
+    margin: 0, auto;
+    background-color: black;
+    height: 100px;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.headerContent{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.title{
+    color: white;
+    padding-top: 30px;
+}
+.menu{
+    display: flex;
+    padding: 15px;
+    justify-content: flex-end;
+}
+.menuLi{
+    margin-top: 20px;
+    font-size: larger;
+    display: inline-block;
+    padding: 5px;
+}
+.tankImg1{
+    height: auto;
+    width: 120px;
+    display: block;
+}

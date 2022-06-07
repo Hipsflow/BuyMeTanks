@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="butmetanksReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="317cce3a-4d0b-41b7-ae18-77c84d8b87a9">
+	<property name="ireport.zoom" value="1.7715610000000035"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" mode="Opaque" forecolor="#000000" backcolor="#FFFFFF">
+		<pen lineWidth="1.25"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{updated_at_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000" backcolor="#9999FF" fill="Solid" hAlign="Left" fontSize="12">
+				<pen lineWidth="2.0"/>
+			</style>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+                fronts.name as frontName,
+                fronts.year_begin,
+                fronts.year_end,
+                fronts.id,
+				to_char(fronts.updated_at,'DD/MM/YYYY') as updated_at,
+                front_tanks.id as frontTankId,
+                front_countries.id as frontCountryId,
+                countries.name as countryname,
+                tanks.name as tankname
+
+            FROM
+                public.fronts
+                join public.front_countries on fronts.id = front_countries.front_id
+                join public.countries on countries.id = front_countries.country_id
+                join public.front_tanks on fronts.id = front_tanks.front_id
+                join public.tanks on tanks.id = front_tanks.tank_id
+			ORDER BY updated_at ASC]]>
+	</queryString>
+	<field name="frontname" class="java.lang.String"/>
+	<field name="year_begin" class="java.lang.Integer"/>
+	<field name="year_end" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="updated_at" class="java.lang.String"/>
+	<field name="fronttankid" class="java.lang.Long"/>
+	<field name="frontcountryid" class="java.lang.Long"/>
+	<field name="countryname" class="java.lang.String"/>
+	<field name="tankname" class="java.lang.String"/>
+	<variable name="row_count" class="java.lang.Integer" resetType="None">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="updated_at">
+		<groupExpression><![CDATA[$F{updated_at}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<staticText>
+					<reportElement x="0" y="0" width="32" height="15" uuid="6268ed8f-97a7-4093-ac18-e573d47d5a8b"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="32" y="0" width="100" height="15" uuid="e99d36c3-f5a4-4222-ad83-f7cd5566bebd"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{updated_at}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="368" y="15" width="72" height="15" uuid="85881ed1-eec4-4d27-a775-31bbf1eabe98"/>
+					<textElement>
+						<font size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ID dos tanques]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="286" y="15" width="82" height="15" uuid="ebc7b650-8133-4c51-b930-1ed5dd3e5c69"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nome dos Países]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="440" y="15" width="115" height="15" uuid="335a1ca0-7662-4196-9c59-a8fbcf8c4f90"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nome dos tanques]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="219" y="15" width="67" height="15" uuid="492b943b-ea4d-49b3-ac5c-4a37f467b8b9"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ID dos países]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="2" y="15" width="51" height="15" uuid="b99338b0-49f8-4b0d-bcb8-6c604636b597"/>
+					<textElement>
+						<font size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ID do Front]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="53" y="15" width="79" height="15" uuid="8c3e885b-2384-4bb8-9e78-001593926900"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nome dos fronts:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="132" y="15" width="87" height="15" uuid="141cc936-c0af-41ef-93bb-32a4ef8ed11d"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ano de inicio e final]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="49" backcolor="#9999FF" uuid="faa699d0-104f-4f5b-8094-50b8cb76dac0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="49" backcolor="#CCCCCC" uuid="e714883e-d596-4a6a-934f-92b92035e63b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[BuyMeTanks Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="32" uuid="2514469a-b7fe-4515-a96a-36bece6094b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Front reports]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="31" width="555" height="1" uuid="05ecba1d-4d6c-44f8-b7d5-889f4ce6c3c7"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13">
+			<frame>
+				<reportElement style="style1" x="0" y="0" width="555" height="13" uuid="14ffd686-65c1-4f41-9ac8-92d04ad4ae40"/>
+			</frame>
+			<textField>
+				<reportElement x="177" y="0" width="55" height="13" uuid="e7171c4d-1dc8-4603-bd0c-6dbdc4ffaa9e"/>
+				<textFieldExpression><![CDATA[$F{year_end}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="0" width="45" height="13" uuid="9adb40f3-539b-4e55-bae8-3bdf1afd94ea"/>
+				<textFieldExpression><![CDATA[$F{year_begin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="32" y="0" width="100" height="13" uuid="865df8ef-0104-44c7-8308-610e14f3e8e1"/>
+				<textFieldExpression><![CDATA[$F{frontname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="32" height="13" uuid="3eee88b7-783f-4ba1-9e08-f1247a51c045"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="0" width="54" height="13" uuid="f446e53b-0828-41cb-a3ba-0f2e901b613e"/>
+				<textFieldExpression><![CDATA[$F{frontcountryid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="0" width="82" height="13" uuid="476de86c-cd73-4c3d-b658-32ebcdd44276"/>
+				<textFieldExpression><![CDATA[$F{countryname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="0" width="72" height="13" uuid="0920cf41-6101-4c91-a4c5-6cd8b179cf6d"/>
+				<textFieldExpression><![CDATA[$F{frontcountryid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="115" height="13" uuid="49ced79a-2785-46d0-8ae5-fad723bd6335"/>
+				<textFieldExpression><![CDATA[$F{tankname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="540" y="0" width="15" height="19" uuid="f22e0591-af0f-46ed-9697-2b3196324f7f"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

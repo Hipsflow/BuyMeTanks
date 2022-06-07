@@ -1,0 +1,78 @@
+<header>
+    <title>frontpage</title>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</header>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="headerContent">
+                <a href="#"><img class="tankImg1" src="assets/images/tankcartoon.png"></a>
+                <h1 class="title">BuyMeTanks.com</h1>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="menuLi"><a href="#" [routerLink]="['/frontpage']">Home</a></li>
+                    <li class="menuLi"><a href="#">FAQ</a></li>
+                    <li class="menuLi"><a href="#">Contatos</a></li>
+                    <li class="menuLi"><a href="#">NaoseiMais</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- <div class="Selector">
+            <ul class="menuMain">
+                <li><a href="#">Acessar</a>
+                    <ul>
+                        <li><a href="#" [routerLink]="['/countries']">Paises</a></li>
+                        <li><a href="#" [routerLink]="['/tanks']">Tanques</a></li>
+                        <li><a href="#" [routerLink]="['/fronts']">Frontes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div> -->
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Acessar:
+                    </button>
+                </h2>
+                <div class="buttons">
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-bodyButtons" style="padding: 15px;">
+                            <button style="padding: 15px;" style="margin: 15px;" class="btn btn-primary btn-lg"
+                                [routerLink]="['/countries']">Paises</button>
+                            <button style="padding: 15px;" style="margin: 15px;" class="btn btn-primary btn-lg"
+                                [routerLink]="['/tanks']">Tanques</button>
+                            <button style="padding: 15px;" style="margin: 15px;" class="btn btn-primary btn-lg"
+                                [routerLink]="['/fronts']">Fronts</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="datatables" class="table table-no-bordered" cellspacing="0" width="100%" style="width:100%">
+            <thead class="table table-dark table-striped">
+                <th>Nome do front</th>
+                <th>Ano que Começou</th>
+                <th>Ano que Terminou</th>
+                <th>Beligentes</th>
+                <th>Tanques usados</th>
+            </thead>
+            <tbody class="table table-success table-striped" *ngFor="let resposta of allFront">
+            <tr>
+                <td>{{resposta.frontname}}</td>
+                <td>{{resposta.countryname}}</td>
+                <td>{{resposta.year_begin}}</td>
+                <td>{{resposta.year_end}}</td>
+                <td>{{resposta.tankname}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</body>

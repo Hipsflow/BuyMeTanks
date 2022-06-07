@@ -1,0 +1,100 @@
+<body>
+    <header>
+        <div class="header">
+            <div class="headerContent">
+                <a href="#" [routerLink]="['/frontpage']"><img class="tankImg1" src="assets/images/tankcartoon.png"></a>
+                <h1 class="title">BuyMeTanks.com</h1>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="menuLi"><a href="#" [routerLink]="['/api']">Sistema</a></li>
+                    <li class="menuLi"><a href="#">FAQ</a></li>
+                    <li class="menuLi"><a href="#">Contatos</a></li>
+                    <li class="menuLi"><a href="#">NaoseiMais</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="material-datatables">
+                <table id="datatables" class="table table-no-bordered" cellspacing="0" width="100%" style="width:100%">
+                    <thead class=" text-primary">
+                        <th>Nome</th>
+                        <th>Produção Começou</th>
+                        <th>Producção Terminou</th>
+                        <th>Classe</th>
+                        <th>Pais</th>
+                        <th class="disabled-sorting text-right">Ações</th>
+                    </thead>
+                    <tbody class="table table-success table-striped" *ngFor="let resposta of respostas">
+                        <tr (click)="getTank(resposta.id)">
+                            <td>{{resposta.name}}</td>
+                            <td>{{resposta.production_start}}</td>
+                            <td>{{resposta.production_ended}}</td>
+                            <td>{{resposta.class}}</td>
+                            <td>{{resposta.countries_name}}</td>
+                            <td><button (click)="deleteTanks(resposta.id)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Incluir tanques novos</h3>
+                <form (submit)="insertTanks()">
+                    <label>Nome do tanque:</label><br>
+                    <input class="form-control" placeholder="Nome do tanque" aria-label="Nome do tanque" type="text"
+                        id="name" name="name" [(ngModel)]="tanks.name"><br>
+                    <label>Começo da produção:</label><br>
+                    <input class="form-control" placeholder="Começo da produção" aria-label="Começo da produção"
+                        type="text" id="production_start" name="production_start"
+                        [(ngModel)]="tanks.production_start"><br>
+                    <label>Final da produção:</label><br>
+                    <input class="form-control" placeholder="Final da produção" aria-label="Final da produção"
+                        type="text" id="production_ended" name="production_ended"
+                        [(ngModel)]="tanks.production_ended"><br>
+                    <label>Classe do tanque:</label><br>
+                    <input class="form-control" placeholder="Classe do tanque" aria-label="Classe do tanque" type="text"
+                        id="class" name="class" [(ngModel)]="tanks.class"><br>
+                    <label>Nome do pais:</label><br>
+                    <select class="form-select" data-style="btn-primary" [(ngModel)]="tanks.country_id" name="select">
+                        <ng-container *ngFor="let country of resultado">
+                            <!-- <option [ngValue]="null" disabled>Select Country</option> -->
+                            <option [value]="country.id">
+                                {{country.name}}</option>
+                        </ng-container>
+                    </select>
+                    <br><br>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Enviar">
+                </form>
+            </div>
+            <div>
+                <h3>Atualizar tanques</h3>
+                <form (submit)="updateTank()">
+                    <label>Nome do tanque:</label><br>
+                    <input class="form-control" placeholder="Nome do tanque" aria-label="Nome do tanque" id="name"
+                        name="name" [(ngModel)]="tankPut.name"><br>
+                    <label>Começo da produção:</label><br>
+                    <input class="form-control" placeholder="Começo da produção" aria-label="Começo da produção"
+                        type="text" id="production_start" name="production_start"
+                        [(ngModel)]="tankPut.production_start"><br>
+                    <label>Final da produrção:</label><br>
+                    <input class="form-control" placeholder="Final da produção" aria-label="Final da produção"
+                        type="text" id="production_ended" name="production_ended"
+                        [(ngModel)]="tankPut.production_ended"><br>
+                    <label>Classe do tanque:</label><br>
+                    <input class="form-control" placeholder="Classe do tanque" aria-label="Classe do tanque" type="text"
+                        id="class" name="class" [(ngModel)]="tankPut.class"><br>
+                    <label>País de produção</label><br>
+                    <select class="form-select" data-style="btn-primary" [(ngModel)]="tanks.country_id" name="select">
+                        <br>
+                        <ng-container *ngFor="let country of resultado">
+                            <!-- <option [ngValue]="null" disabled>Select Country</option> -->
+                            <option [value]="country.id">
+                                {{country.name}}</option>
+                        </ng-container>
+                    </select>
+                    <br>
+                    <br>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    </header>
+</body>

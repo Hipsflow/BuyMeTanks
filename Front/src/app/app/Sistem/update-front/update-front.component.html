@@ -1,0 +1,45 @@
+<header>
+    <div class="header">
+        <div class="headerContent">
+            <a href="#" [routerLink]="['/frontpage']"><img class="tankImg1" src="assets/images/tankcartoon.png"></a>
+            <h1 class="title">BuyMeTanks.com</h1>
+        </div>
+        <div class="menu">
+            <ul>
+                <li class="menuLi"><a href="#" [routerLink]="['/api']">Sistema</a></li>
+                <li class="menuLi"><a href="#">FAQ</a></li>
+                <li class="menuLi"><a href="#">Contatos</a></li>
+                <li class="menuLi"><a href="#">NaoseiMais</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <table id="datatables" class="table table-no-bordered" cellspacing="0" width="100%" style="width:100%">
+            <thead class=" text-primary">
+                <th>Nome do front</th>
+                <th>Ano que Começou</th>
+                <th>Ano que Terminou</th>
+                <th class="disabled-sorting text-right">Ações</th>
+            </thead>
+            <tbody *ngFor="let resposta of respostas">
+                <tr (click)="getFront(resposta.id)">
+                    <td>{{resposta.name}}</td>
+                    <td>{{resposta.year_begin}}</td>
+                    <td>{{resposta.year_end}}</td>
+                </tr>
+            </tbody>
+            <td>
+        </table>
+        <form (submit)="updateFront()">
+            <label>Nome do front:</label><br>
+            <input id="name" name="name" [(ngModel)]="frontPut.name"><br>
+            <label>Começo do front:</label><br>
+            <input type="text" id="production_start" name="production_start"
+                [(ngModel)]="frontPut.year_begin"><br>
+            <label>Final do front:</label><br>
+            <input type="text" id="production_ended" name="production_ended" [(ngModel)]="frontPut.year_end"><br>
+            <br><br>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</header>

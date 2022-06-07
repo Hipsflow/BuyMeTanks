@@ -1,0 +1,60 @@
+<body>
+    <header>
+        <div class="header">
+            <div class="headerContent">
+                <a href="#" [routerLink]="['/frontpage']"><img class="tankImg1" src="assets/images/tankcartoon.png"></a>
+                <h1 class="title">BuyMeTanks.com</h1>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="menuLi"><a href="#" [routerLink]="['/api']">Sistema</a></li>
+                    <li class="menuLi"><a href="#">FAQ</a></li>
+                    <li class="menuLi"><a href="#">Contatos</a></li>
+                    <li class="menuLi"><a href="#">NaoseiMais</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="material-datatables">
+                <table id="datatables" class="table table-no-bordered" cellspacing="0" width="100%" style="width:100%">
+                    <thead class=" text-primary">
+                        <th>Nome</th>
+                        <th>Aliados</th>
+                        <th class="disabled-sorting text-right">Ações</th>
+                    </thead>
+                    <tbody class="table table-success table-striped" *ngFor="let resposta of respostas">
+                        <tr (click)="getCountry(resposta.id)">
+                            <td>{{resposta.name}}</td>
+                            <td>{{resposta.allies}}</td>
+                            <td><button (click)="deleteCountries(resposta.id)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Incluir Pais novo</h3>
+                <form (submit)="insertCountries()">
+                    <label for="name">Nome do país:</label><br>
+                    <input class="form-control" placeholder="Nome do país"
+                                aria-label="Nome do país" type="text" id="name" name="name" [(ngModel)]="country.name"><br>
+                    <label for="name">Aliança do país:</label><br>
+                    <input class="form-control" placeholder="Aliança do país"
+                                aria-label="Aliança do país" type="text" id="allies" name="allies" [(ngModel)]="country.allies"><br>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Enviar">
+                </form>
+            </div>
+            <div>
+                <h3>Atualizar Pais</h3>
+                <form (submit)="updateCountry()">
+                    <label>Nome do País:</label><br>
+                    <input class="form-control" placeholder="Nome do país"
+                                aria-label="Nome do país" id="name" name="name" [(ngModel)]="countryPut.name"><br>
+                    <label>Aliança do país:</label><br>
+                    <input class="form-control" placeholder="Aliança do país"
+                                aria-label="Aliança do país" type="text" id="production_start" name="production_start"
+                        [(ngModel)]="countryPut.allies"><br>
+                    <br><br>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    </header>
+</body>
